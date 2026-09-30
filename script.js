@@ -129,12 +129,12 @@ const galleryData = {
     label: "Movies",
     icon: "🎬",
     items: [
-      { file: "movie-01.png", name: "El Viaje de Chihiro" },
-      { file: "movie-02.png", name: "El Viaje de Chihiro" },
-      { file: "movie-03.png", name: "La La Land" },
-      { file: "movie-04.png", name: "Coraline" },
-      { file: "movie-05.png", name: "Amélie" },
-      { file: "movie-06.png", name: "Titanic" }
+      { file: "movie-01.png", name: "Mulán" },
+      { file: "movie-02.png", name: "Spirited Away" },
+      { file: "movie-03.png", name: "Howl's Moving Castle" },
+      { file: "movie-04.png", name: "Howl's Moving Castle" },
+      { file: "movie-05.png", name: "Mulán" },
+      { file: "movie-06.png", name: " Suzume no Tojimari" }
     ]
   },
 
@@ -186,7 +186,7 @@ function renderGallery(type = "photos") {
         alt="${item.name}"
       >
 
-      <span>${String(i + 1).padStart(2, "0")}</span>
+      <span>${item.name}</span>
     </div>
   `).join("");
 
