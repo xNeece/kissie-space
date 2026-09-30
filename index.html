@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kissie Xatspace — By Nece</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="login-lock">
+
+<!-- =========================================================
+     FONDO DINÁMICO — generado por script.js
+     Puedes cambiar cantidad/tipos desde CONFIG.effects.
+     ========================================================= -->
+<div class="ambient-layer" id="ambientLayer" aria-hidden="true"></div>
+
+<!-- ======================== LOGIN / WELCOME ======================== -->
+<section id="loginScreen" aria-label="Welcome and login">
+  <div class="login-window">
+    <header class="login-browser">
+      <div class="login-address"><span class="globe">◉</span><span>https://www.kissie-profile.com</span></div>
+      <div class="login-dots mac-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+    </header>
+
+    <div class="login-content">
+      <section class="login-profile">
+        <div class="login-avatar"><img src="assets/img/profile1.png" alt="Kissie profile"></div>
+        <div class="login-welcome">Welcome to my profile</div>
+        <div class="login-name">Kissie</div>
+        <div class="login-meta">Reg: <b>Redamancia</b><br>UID: <b>1545198896</b></div>
+      </section>
+
+      <section class="login-form-wrap">
+        <form class="login-form" id="loginForm">
+          <h2>Log in</h2>
+          <p class="login-sub">Enter your register and password to continue.</p>
+          <label class="login-field"><span>Register</span><input id="loginRegister" type="text" autocomplete="username" placeholder="your register"></label>
+          <label class="login-field"><span>Password</span><input id="loginPassword" type="password" autocomplete="current-password" placeholder="your password"></label>
+          <button class="login-btn" type="submit">LOGIN ♡</button>
+          <div class="login-status" id="loginStatus"></div>
+        </form>
+      </section>
+    </div>
+
+    <footer class="login-footer"><span>Kissie profile space</span><span>Welcome ♡</span></footer>
+  </div>
+</section>
+
+<main class="xat-window" id="xatWindow">
+  <header class="browser-bar">
+    <div class="address-pill"><span class="globe">◉</span><span>https://www.kissie-profile.com/my_world</span></div>
+    <div class="window-controls mac-dots" aria-label="controles de ventana">
+      <button aria-label="minimizar" class="mac-dot mac-yellow"></button>
+      <button aria-label="maximizar" class="mac-dot mac-green"></button>
+      <button id="closeBtn" aria-label="cerrar" class="mac-dot mac-red"></button>
+    </div>
+  </header>
+
+  <!-- =======================================================
+       NAVEGACIÓN — exactamente 4 apartados
+       About / Message / Music / Video
+       ======================================================= -->
+  <nav class="top-tabs" aria-label="secciones">
+    <button class="top-tab active" data-view="profile"><span>ℹ️</span> About</button>
+    <button class="top-tab" data-view="chat"><span>💬</span> Message</button>
+    <button class="top-tab" data-view="music"><span>🎵</span> Music</button>
+    <button class="top-tab" data-view="video"><span>🎥</span> Video</button>
+  </nav>
+
+  <section class="screen">
+
+    <!-- ========================= ABOUT ========================= -->
+    <section class="view active" id="profileView">
+      <aside class="profile-side">
+        <div class="avatar-frame">
+  <video class="profile-video" src="assets/video/profile2.mp4" autoplay loop muted playsinline></video>
+</div>
+        <h1>Kissie</h1>
+        <div class="handle">Redamancia</div>
+        <p class="bio">Hello ♡<br>My little pastel space<br>for music, movies,<br>friends & pretty things.</p>
+
+        <a class="side-button" href="#" onclick="return false;">● &nbsp; discord</a>
+        <a class="side-button" href="#" onclick="return false;">♥ &nbsp; request now!</a>
+
+        <p class="report">▣ see anything inappropriate?<br><u>block</u> or <u>report</u></p>
+
+        <div class="mini-player" aria-label="mini music player">
+          <div class="mini-track">
+            <button class="mini-play" id="miniPlayBtn" aria-label="play or pause"><span class="icon icon-play"></span></button>
+            <div class="mini-song">
+              <div class="mini-song-name" id="miniSongName">Lavender Dreams</div>
+              <div class="mini-song-artist" id="miniSongArtist">Kissie playlist</div>
+            </div>
+            <div class="mini-times"><span id="miniCurrentTime">0:00</span> / <span id="miniDuration">0:00</span></div>
+          </div>
+          <input class="mini-progress" id="miniSeekBar" type="range" min="0" max="100" value="0" aria-label="music progress">
+          <div class="mini-controls">
+            <button id="miniPrevBtn" aria-label="previous"><span class="icon icon-prev"></span></button>
+            <div class="mini-now">NOW PLAYING ♫</div>
+            <button id="miniNextBtn" aria-label="next"><span class="icon icon-next"></span></button>
+          </div>
+        </div>
+      </aside>
+
+      <section class="content-side">
+        <div class="intro">
+          <h2>info and little things ♡</h2>
+          <div class="rule"></div>
+          <p>I make layouts and this little space has music, videos, friends and a few pretty collections. Choose a section above or open the gallery menu.</p>
+        </div>
+
+        <div class="gallery-wrap">
+          <button class="gallery-title" id="galleryToggle" aria-expanded="false">
+            <span>📷 <b id="galleryLabel">photo gallery</b></span>
+            <b class="arrow">⌄</b>
+          </button>
+
+          <div class="gallery-menu" id="galleryMenu">
+            <button data-gallery="photos">📷 photo gallery</button>
+            <button data-gallery="friends">👥 friends</button>
+            <button data-gallery="movies">🎬 movies</button>
+            <button data-gallery="series">📺 series</button>
+          </div>
+
+          <!-- Miniaturas compactas para dejar más aire al texto. -->
+          <div class="gallery-grid" id="galleryGrid"></div>
+        </div>
+
+        <div class="about-note">
+          <span>✦</span>
+          <div><b>little note</b><br><span>everything here is easy to replace: images, text, songs, videos and chat replies.</span></div>
+        </div>
+
+        <div class="bottom-actions">
+          <button data-view="chat">open message ♡</button>
+          <button data-view="profile">stay here!</button>
+        </div>
+      </section>
+    </section>
+
+    <!-- ======================== MESSAGE ======================== -->
+    <section class="view" id="chatView">
+      <section class="full-panel chat-panel">
+        <div class="panel-title">● message <span>online ♡</span></div>
+        <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
+
+        <form class="chat-form" id="chatForm">
+          <input id="chatInput" maxlength="180" autocomplete="off" placeholder="write a message...">
+          <button type="submit">send ♡</button>
+        </form>
+        <div class="chat-hint">you can write anything — the space will answer with a random reply ♡</div>
+      </section>
+    </section>
+
+    <!-- =========================== MUSIC ========================= -->
+    <section class="view" id="musicView">
+      <section class="full-panel music-panel">
+        <div class="panel-title">♫ music player <span id="musicStatus">ready ♡</span></div>
+
+        <div class="music-main">
+          <div class="album-art">
+            <img id="albumArt" src="assets/img/music.png" alt="Portada">
+            <div class="vinyl"></div>
+          </div>
+
+          <div class="music-info">
+            <div class="song-title" id="songTitle">Lavender Dreams</div>
+            <div class="song-artist" id="songArtist">Kissie playlist</div>
+            <div class="waveform" id="waveform"></div>
+            <div class="time-row"><span id="currentTime">0:00</span><span id="duration">0:00</span></div>
+            <input class="seekbar" id="seekBar" type="range" min="0" max="100" value="0" aria-label="progreso">
+
+            <div class="media-controls">
+              <button id="prevBtn" aria-label="previous"><span class="icon icon-prev"></span></button>
+              <button id="playBtn" class="play-btn" aria-label="play or pause"><span class="icon icon-play"></span></button>
+              <button id="nextBtn" aria-label="next"><span class="icon icon-next"></span></button>
+              <button id="muteBtn" aria-label="mute"><span class="icon icon-volume"></span></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="playlist-title">playlist — 10 songs</div>
+        <div class="playlist" id="playlist"></div>
+        <audio id="audio"></audio>
+      </section>
+    </section>
+
+    <!-- =========================== VIDEO ======================== -->
+    <section class="view" id="videoView">
+      <section class="full-panel video-panel">
+        <div class="panel-title">📼 video <span>6 clips ♡</span></div>
+        <div class="video-grid" id="videoGrid"></div>
+      </section>
+    </section>
+
+  </section>
+
+  <footer class="bottom-bar">
+    <div class="footer-icons"><button id="heartButton" aria-label="abrir frases">♡</button><button id="calendarButton" aria-label="abrir calendario">▦</button></div>
+    <div class="credits"><span>credits to Nece ★</span><span id="dateTime">--/--/---- 00:00:00</span></div>
+  </footer>
+
+
+
+</main>
+
+  <!-- =======================================================
+       CALENDARIO — panel lateral desplegable
+       El botón inferior ▦ lo abre/cierra.
+       ======================================================= -->
+  <aside class="calendar-panel" id="calendarPanel" aria-hidden="true">
+    <div class="calendar-head">
+      <div>
+        <span class="calendar-kicker">TODAY</span>
+        <h3 id="calendarMonthTitle">September 2026</h3>
+      </div>
+      <button class="calendar-close" id="calendarClose" aria-label="cerrar calendario">×</button>
+    </div>
+    <div class="calendar-weekdays" aria-hidden="true">
+      <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+    </div>
+    <div class="calendar-grid" id="calendarGrid"></div>
+    <div class="calendar-today">
+      <span class="today-dot"></span>
+      <span id="calendarTodayLabel">Today</span>
+    </div>
+  </aside>
+
+<!-- Heart / phrases panel -->
+<aside class="heart-panel" id="heartPanel" aria-hidden="true">
+  <div class="heart-head"><div><span class="heart-kicker">LITTLE NOTES</span><h3>♡ thoughts</h3></div><button class="heart-close" id="heartClose" aria-label="cerrar">×</button></div>
+  <div class="heart-messages" id="heartMessages"></div>
+</aside>
+
+<!-- Video grande al hacer click -->
+<div class="media-modal" id="videoModal" aria-hidden="true">
+  <div class="media-modal-card video-modal-card">
+    <button class="modal-close" id="modalClose" aria-label="cerrar">×</button>
+    <button class="media-nav media-prev" id="videoPrev" aria-label="video anterior">‹</button>
+    <video id="modalVideo" controls playsinline loop muted preload="metadata"></video>
+    <button class="media-nav media-next" id="videoNext" aria-label="video siguiente">›</button>
+    <div class="media-modal-label" id="modalVideoCaption"></div>
+  </div>
+</div>
+
+<!-- Imagen grande al hacer click en una miniatura -->
+<div class="media-modal image-modal" id="imageModal" aria-hidden="true">
+  <div class="media-modal-card image-modal-card">
+    <button class="modal-close" id="imageModalClose" aria-label="cerrar">×</button>
+    <button class="media-nav media-prev" id="imagePrev" aria-label="imagen anterior">‹</button>
+    <img id="modalImage" src="" alt="">
+    <button class="media-nav media-next" id="imageNext" aria-label="imagen siguiente">›</button>
+    <div class="image-modal-caption" id="modalImageCaption"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
