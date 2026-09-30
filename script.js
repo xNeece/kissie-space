@@ -100,18 +100,21 @@ Object.entries(CONFIG.effects).forEach(([type,count])=>{
 /* ========================= GALERÍA ========================= */
 const galleryData = {
   photos: {
-    label: "photo gallery",
+    label: "Photo gallery",
+    icon: "📷",
     items: [
       { file: "photo-01.png", name: "Relax" },
       { file: "photo-02.png", name: "Cool" },
       { file: "photo-03.png", name: "Flowers" },
       { file: "photo-04.png", name: "Tired" },
       { file: "photo-05.png", name: "More Flowers" },
-      { file: "photo-06.png", name: "Angry" },
+      { file: "photo-06.png", name: "Angry" }
     ]
   },
+
   friends: {
-    label: "friends",
+    label: "Friends",
+    icon: "👥",
     items: [
       { file: "friend-01.png", name: "P （＾ω＾）" },
       { file: "friend-02.png", name: "Y ૮₍˶ᵔᵕᵔ˶₎ა" },
@@ -121,8 +124,10 @@ const galleryData = {
       { file: "friend-06.png", name: "D ૮꒰˶•༝•˶꒱ა ♡" }
     ]
   },
+
   movies: {
-    label: "movies",
+    label: "Movies",
+    icon: "🎬",
     items: [
       { file: "movie-01.png", name: "El Viaje de Chihiro" },
       { file: "movie-02.png", name: "El Viaje de Chihiro" },
@@ -132,8 +137,10 @@ const galleryData = {
       { file: "movie-06.png", name: "Titanic" }
     ]
   },
+
   series: {
-    label: "series",
+    label: "Series",
+    icon: "📺",
     items: [
       { file: "series-01.png", name: "Stranger Things" },
       { file: "series-02.png", name: "Euphoria" },
@@ -145,42 +152,140 @@ const galleryData = {
   }
 };
 
-function renderGallery(type="photos"){
-  const d = galleryData[type];
-  const grid = document.getElementById("galleryGrid");
-  document.getElementById("galleryLabel").textContent = d.label;
+/* ---------- RENDER DE LA GALERÍA ---------- */
 
-  grid.innerHTML = d.items.map(item => `
-    <div class="gallery-card" data-image="assets/img/${item.file}" data-caption="${item.name}">
-      <img src="assets/img/${item.file}" alt="${item.name}">
-      <span>${item.name}</span>
+function renderGallery(type = "photos") {
+
+  const d = galleryData[type];
+
+  const grid = document.getElementById("galleryGrid");
+  const galleryLabel = document.getElementById("galleryLabel");
+  const galleryIcon = document.getElementById("galleryIcon");
+
+  if (!d || !grid) return;
+
+  /* Cambiar nombre */
+  if (galleryLabel) {
+    galleryLabel.textContent = d.label;
+  }
+
+  /* Cambiar icono */
+  if (galleryIcon) {
+    galleryIcon.textContent = d.icon;
+  }
+
+  /* Crear las tarjetas */
+  grid.innerHTML = d.items.map((item, i) => `
+    <div
+      class="gallery-card"
+      data-image="assets/img/${item.file}"
+      data-caption="${item.name}"
+    >
+      <img
+        src="assets/img/${item.file}"
+        alt="${item.name}"
+      >
+
+      <span>${String(i + 1).padStart(2, "0")}</span>
     </div>
   `).join("");
 
+  /* Abrir imagen */
   grid.querySelectorAll(".gallery-card").forEach(card => {
-    card.addEventListener("click", () => openImageModal(card.dataset.image, card.dataset.caption));
+
+    card.addEventListener("click", () => {
+
+      openImageModal(
+        card.dataset.image,
+        card.dataset.caption
+      );
+
+    });
+
   });
 }
-renderGallery();
 
-const galleryToggle=document.getElementById("galleryToggle");
-const galleryMenu=document.getElementById("galleryMenu");
-galleryToggle.onclick=()=>{
-  const open=galleryMenu.classList.toggle("open");
-  galleryToggle.setAttribute("aria-expanded",String(open));
-};
-document.querySelectorAll("[data-gallery]").forEach(b=>{
-  b.onclick=()=>{
-    renderGallery(b.dataset.gallery);
-    galleryMenu.classList.remove("open");
-    galleryToggle.setAttribute("aria-expanded","false");
-  };
+
+/* ---------- INICIALIZAR ---------- */
+
+renderGallery("photos");
+
+
+/* ---------- BOTÓN DEL MENÚ ---------- */
+
+const galleryToggle = document.getElementById("galleryToggle");
+const galleryMenu = document.getElementById("galleryMenu");
+
+
+if (galleryToggle && galleryMenu) {
+
+  galleryToggle.addEventListener("click", (event) => {
+
+    event.stopPropagation();
+
+    const isOpen = galleryMenu.classList.toggle("open");
+
+    galleryToggle.setAttribute(
+      "aria-expanded",
+      String(isOpen)
+    );
+
+  });
+
+}
+
+
+/* ---------- OPCIONES DEL MENÚ ---------- */
+
+document.querySelectorAll("[data-gallery]").forEach(button => {
+
+  button.addEventListener("click", (event) => {
+
+    event.stopPropagation();
+
+    const type = button.dataset.gallery;
+
+    /* Cambiar contenido */
+    renderGallery(type);
+
+    /* Cerrar menú */
+    if (galleryMenu) {
+      galleryMenu.classList.remove("open");
+    }
+
+    if (galleryToggle) {
+      galleryToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+    }
+
+  });
+
 });
-document.addEventListener("click",e=>{
-  if(!e.target.closest(".gallery-wrap")){
-    galleryMenu.classList.remove("open");
-    galleryToggle.setAttribute("aria-expanded","false");
+
+
+/* ---------- CERRAR AL HACER CLICK AFUERA ---------- */
+
+document.addEventListener("click", (event) => {
+
+  const galleryWrap = event.target.closest(".gallery-wrap");
+
+  if (!galleryWrap) {
+
+    if (galleryMenu) {
+      galleryMenu.classList.remove("open");
+    }
+
+    if (galleryToggle) {
+      galleryToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+    }
+
   }
+
 });
 
 /* ========================= NAVEGACIÓN ========================= */

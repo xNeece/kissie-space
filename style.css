@@ -83,7 +83,7 @@ button,input{font:inherit;color:inherit}button{cursor:pointer}
 .report{font-size:11px;line-height:1.35}
 .content-side{padding:15px;overflow:auto}.intro h2{font-size:23px;margin:0}.rule{height:3px;background:#504153;margin:8px 0 10px}.intro p{font-size:14px;line-height:1.48;margin:0 0 13px}
 .gallery-wrap{position:relative}.gallery-title{width:100%;border:2px solid #a795af;border-radius:13px;background:linear-gradient(#fff,#d9c9df);box-shadow:var(--shadow);padding:8px 12px;text-align:left;font-size:16px;display:flex;justify-content:space-between;align-items:center}
-.gallery-title .arrow{font-size:23px}.gallery-menu{display:none;position:absolute;z-index:30;left:0;right:0;top:48px;padding:6px;border-radius:11px;background:#f2eaf5;border:2px solid #a795af;box-shadow:0 10px 25px rgba(60,40,70,.24)}
+.gallery-title .arrow{font-size:23px}.gallery-menu{display:none;position:absolute;z-index:30;right:15px;width:538px;top:182.5px;padding:6px;border-radius:11px;background:#f2eaf5;border:2px solid #a795af;box-shadow:0 10px 25px rgba(60,40,70,.24)}
 .gallery-menu.open{display:grid}.gallery-menu button{border:0;background:transparent;text-align:left;padding:8px 10px;border-radius:8px;font-size:13px}.gallery-menu button:hover{background:#dccbe3}
 .gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}
 .gallery-card{aspect-ratio:1;border:2px solid #82718a;border-radius:12px;overflow:hidden;background:#ddd0e5;box-shadow:var(--shadow);position:relative;cursor:zoom-in}
