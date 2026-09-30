@@ -116,8 +116,8 @@ const galleryData = {
       { file: "friend-01.png", name: "P （＾ω＾）" },
       { file: "friend-02.png", name: "Y ૮₍˶ᵔᵕᵔ˶₎ა" },
       { file: "friend-03.png", name: "A ⸜(｡˃ᵕ˂)⸝♡" },
-      { file: "friend-04.png", name: "N (˶ᵔᵕᵔ˶)" },
-      { file: "friend-05.png", name: "K （＾ω＾）" },
+      { file: "friend-04.png", name: "K （＾ω＾）" },
+      { file: "friend-05.png", name: "N (˶ᵔᵕᵔ˶)" },
       { file: "friend-06.png", name: "D ૮꒰˶•༝•˶꒱ა ♡" }
     ]
   },
