@@ -5,21 +5,34 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kissie Xatspace — By Nece</title>
 <link rel="stylesheet" href="style.css">
+<!-- FontAwesome para iconos de redes sociales -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="login-lock">
 
 <!-- =========================================================
      FONDO DINÁMICO — generado por script.js
-     Puedes cambiar cantidad/tipos desde CONFIG.effects.
      ========================================================= -->
 <div class="ambient-layer" id="ambientLayer" aria-hidden="true"></div>
 
 <!-- ======================== LOGIN / WELCOME ======================== -->
 <section id="loginScreen" aria-label="Welcome and login">
   <div class="login-window">
-    <header class="login-browser">
-      <div class="login-address"><span class="globe">◉</span><span>https://www.kissie-profile.com</span></div>
-      <div class="login-dots mac-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+    <header class="login-browser browser-bar">
+      <div class="browser-nav-center">
+        <div class="nav-history-group">
+          <button class="browser-nav-btn" aria-label="retroceder" tabindex="-1">🡰</button>
+          <button class="browser-nav-btn" aria-label="avanzar" tabindex="-1">🡲</button>
+          <button class="browser-nav-btn" aria-label="recargar" tabindex="-1">↻</button>
+        </div>
+        <div class="address-pill login-address"><span class="globe">🌐</span><span>https://www.kissie-profile.com</span></div>
+        <button class="browser-home-btn" aria-label="home" tabindex="-1"><i class="fa-solid fa-house"></i></button>
+      </div>
+      <div class="window-controls mac-dots" aria-hidden="true">
+        <span class="mac-dot mac-yellow"></span>
+        <span class="mac-dot mac-green"></span>
+        <span class="mac-dot mac-red"></span>
+      </div>
     </header>
 
     <div class="login-content">
@@ -48,7 +61,16 @@
 
 <main class="xat-window" id="xatWindow">
   <header class="browser-bar">
-    <div class="address-pill"><span class="globe">◉</span><span>https://www.kissie-profile.com/my_world</span></div>
+    <div class="browser-nav-center">
+      <div class="nav-history-group">
+        <button class="browser-nav-btn" aria-label="retroceder">🡰</button>
+        <button class="browser-nav-btn" aria-label="avanzar">🡲</button>
+        <button class="browser-nav-btn" aria-label="recargar">↻</button>
+      </div>
+      <div class="address-pill"><span class="globe">🌐</span><span>https://www.kissie-profile.com/my_world</span></div>
+      <button class="browser-home-btn" aria-label="home"><i class="fa-solid fa-house"></i></button>
+    </div>
+
     <div class="window-controls mac-dots" aria-label="controles de ventana">
       <button aria-label="minimizar" class="mac-dot mac-yellow"></button>
       <button aria-label="maximizar" class="mac-dot mac-green"></button>
@@ -58,7 +80,6 @@
 
   <!-- =======================================================
        NAVEGACIÓN — exactamente 4 apartados
-       About / Message / Music / Video
        ======================================================= -->
   <nav class="top-tabs" aria-label="secciones">
     <button class="top-tab active" data-view="profile"><span>ℹ️</span> About</button>
@@ -73,17 +94,25 @@
     <section class="view active" id="profileView">
       <aside class="profile-side">
         <div class="avatar-frame">
-  <video class="profile-video" src="assets/video/profile2.mp4" autoplay loop muted playsinline></video>
-</div>
+          <video class="profile-video" src="assets/video/profile2.mp4" autoplay loop muted playsinline></video>
+        </div>
         <h1>Kissie</h1>
         <div class="handle">@Redamancia</div>
         <p class="bio">Hello ♡<br>This is my little space in pastel lilac tones for music,<br> movies, friends & pretty<br> things i like.</p>
 
-        <a class="side-button" href="https://discord.com/" target="_blank" onclick="return true;">● &nbsp; discord</a>
+        <!-- 6 botones de redes sociales compactos en línea horizontal -->
+        <div class="social-buttons-row">
+          <a class="social-icon-btn" href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a class="social-icon-btn" href="https://discord.com" target="_blank" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a class="social-icon-btn" href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a class="social-icon-btn" href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="social-icon-btn" href="https://x.com" target="_blank" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: block;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a class="social-icon-btn" href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+
         <a class="side-button" href="https://xat.com/" target="_blank" onclick="return true;">♥ &nbsp; go to home!</a>
 
         <p class="report">▣ see anything inappropriate?<br><u>block</u> or <u><a href="https://util.xat.com/support/open.php" target="_blank" style="color: inherit; text-decoration: none;">report</a></u></p>
-
 
         <div class="mini-player" aria-label="mini music player">
           <div class="mini-track">
@@ -118,16 +147,14 @@
           <b class="arrow">⌄</b>
         </button>
 
-          <div class="gallery-menu" id="galleryMenu">
-            <button data-gallery="photos">📷 Photo gallery</button>
-            <button data-gallery="friends">👥 Friends</button>
-            <button data-gallery="movies">🎬 Movies</button>
-            <button data-gallery="series">📺 Series</button>
-          </div>
-
-          <!-- Miniaturas compactas para dejar más aire al texto. -->
-          <div class="gallery-grid" id="galleryGrid"></div>
+        <div class="gallery-menu" id="galleryMenu">
+          <button data-gallery="photos">📷 Photo gallery</button>
+          <button data-gallery="friends">👥 Friends</button>
+          <button data-gallery="movies">🎬 Movies</button>
+          <button data-gallery="series">📺 Series</button>
         </div>
+
+        <div class="gallery-grid" id="galleryGrid"></div>
 
         <div class="about-note">
           <span>✦</span>
@@ -202,40 +229,32 @@
     <div class="footer-icons"><button id="heartButton" aria-label="abrir frases">🖋</button><button id="calendarButton" aria-label="abrir calendario">🗓</button></div>
     <div class="credits"><span>credits to Nece ★</span><span id="dateTime">--/--/---- 00:00:00</span></div>
   </footer>
-
-
-
 </main>
 
-  <!-- =======================================================
-       CALENDARIO — panel lateral desplegable
-       El botón inferior ▦ lo abre/cierra.
-       ======================================================= -->
-  <aside class="calendar-panel" id="calendarPanel" aria-hidden="true">
-    <div class="calendar-head">
-      <div>
-        <span class="calendar-kicker">CALENDAR</span>
-        <h3 id="calendarMonthTitle">September 2026</h3>
-      </div>
-      <button class="calendar-close" id="calendarClose" aria-label="cerrar calendario">×</button>
+<!-- Modales y Paneles Extra -->
+<aside class="calendar-panel" id="calendarPanel" aria-hidden="true">
+  <div class="calendar-head">
+    <div>
+      <span class="calendar-kicker">CALENDAR</span>
+      <h3 id="calendarMonthTitle">September 2026</h3>
     </div>
-    <div class="calendar-weekdays" aria-hidden="true">
-      <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
-    </div>
-    <div class="calendar-grid" id="calendarGrid"></div>
-    <div class="calendar-today">
-      <span class="today-dot"></span>
-      <span id="calendarTodayLabel">Today</span>
-    </div>
-  </aside>
+    <button class="calendar-close" id="calendarClose" aria-label="cerrar calendario">×</button>
+  </div>
+  <div class="calendar-weekdays" aria-hidden="true">
+    <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+  </div>
+  <div class="calendar-grid" id="calendarGrid"></div>
+  <div class="calendar-today">
+    <span class="today-dot"></span>
+    <span id="calendarTodayLabel">Today</span>
+  </div>
+</aside>
 
-<!-- Heart / phrases panel -->
 <aside class="heart-panel" id="heartPanel" aria-hidden="true">
   <div class="heart-head"><div><span class="heart-kicker">LITTLE NOTES</span><h3>♡ thoughts</h3></div><button class="heart-close" id="heartClose" aria-label="cerrar">×</button></div>
   <div class="heart-messages" id="heartMessages"></div>
 </aside>
 
-<!-- Video grande al hacer click -->
 <div class="media-modal" id="videoModal" aria-hidden="true">
   <div class="media-modal-card video-modal-card">
     <button class="modal-close" id="modalClose" aria-label="cerrar">×</button>
@@ -246,7 +265,6 @@
   </div>
 </div>
 
-<!-- Imagen grande al hacer click en una miniatura -->
 <div class="media-modal image-modal" id="imageModal" aria-hidden="true">
   <div class="media-modal-card image-modal-card">
     <button class="modal-close" id="imageModalClose" aria-label="cerrar">×</button>

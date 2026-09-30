@@ -58,7 +58,7 @@ button,input{font:inherit;color:inherit}button{cursor:pointer}
 }
 .xat-window.closing{transform:scale(.97);opacity:.75}
 .browser-bar{background:linear-gradient(#625469,#403444);display:flex;align-items:center;justify-content:space-between;padding:0 12px}
-.address-pill{height:39px;min-width:55%;padding:0 15px;border-radius:22px;background:linear-gradient(#fff,#eee8f2);border:2px solid #88798e;box-shadow:var(--shadow);display:flex;align-items:center;gap:11px;font-weight:bold;font-size:14px}
+.address-pill{height:39px;min-width:70%;padding:0 15px;border-radius:22px;background:linear-gradient(#fff,#eee8f2);border:2px solid #88798e;box-shadow:var(--shadow);display:flex;align-items:center;gap:11px;font-weight:bold;font-size:14px}
 .globe{font-size:19px}.window-controls{display:flex;gap:7px}
 .window-controls button{width:37px;height:37px;border:0;border-radius:11px;background:linear-gradient(#fff,#ddd4e2);box-shadow:var(--shadow);font-size:22px;font-weight:bold}
 .top-tabs{padding:8px 11px;display:grid;grid-template-columns:repeat(4,1fr);gap:9px;background:linear-gradient(#faf7fc,#ded1e5);border-bottom:2px solid #a99aaf}
@@ -180,7 +180,7 @@ button,input{font:inherit;color:inherit}button{cursor:pointer}
 
 @media(max-width:760px){
   body{padding:85px 7px 7px}.xat-window{width:98vw;height:calc(100vh - 92px);min-height:0;grid-template-rows:55px 52px 1fr 48px}
-  .address-pill{min-width:0;width:63%;font-size:11px;height:34px}.window-controls{gap:4px}.window-controls button{width:32px;height:32px}
+  .address-pill{min-width:0;width:70%;font-size:11px;height:34px}.window-controls{gap:4px}.window-controls button{width:32px;height:32px}
   .top-tabs{gap:5px;padding:6px}.top-tab{font-size:13px}.top-tab span{font-size:12px;margin-right:2px}
   #profileView.active{grid-template-columns:1fr}
   .profile-side{border-right:0;border-bottom:2px solid #aa98b0;display:grid;grid-template-columns:105px 1fr;gap:0 10px}
@@ -572,4 +572,123 @@ box-shadow:
     max-width:calc(100vw - 90px);
     max-height:calc(100vh - 100px);
   }
+}
+/* =========================================================
+ *  ESTILOS DE BARRA SUPERIOR (URL equilibrada y centrada)
+ *  ========================================================= */
+
+.browser-bar {
+  background: linear-gradient(#625469,#403444);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  position: relative;
+}
+
+/* Grupo central absoluto para garantizar que quede perfectamente centrado */
+.browser-nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: max-content;
+  max-width: 65%;
+  z-index: 1;
+}
+
+.nav-history-group {
+  display: flex;
+  gap: 4px;
+}
+
+.browser-nav-btn, .browser-home-btn {
+  height: 35px;
+  min-width: 32px;
+  padding: 0 8px;
+  border-radius: 10px;
+  background: linear-gradient(#fff,#eee8f2);
+  border: 2px solid #88798e;
+  box-shadow: var(--shadow);
+  font-size: 14px;
+  font-weight: bold;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform .1s;
+}
+
+.browser-nav-btn:active, .browser-home-btn:active {
+  transform: scale(0.95);
+}
+
+.address-pill {
+  height: 35px;
+  width: 500px; /* Tamaño controlado para que no sea excesivamente larga */
+  padding: 0 12px;
+  border-radius: 18px;
+  background: linear-gradient(#fff,#eee8f2);
+  border: 2px solid #88798e;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.globe {
+  font-size: 16px;
+}
+
+/* Controles estilo macOS a la derecha */
+.window-controls {
+  display: flex;
+  gap: 7px;
+  z-index: 2;
+  margin-left: auto;
+}
+
+.window-controls button, .window-controls span.mac-dot {
+  width: 37px;
+  height: 37px;
+  border: 0;
+  border-radius: 11px;
+  background: linear-gradient(#fff,#ddd4e2);
+  box-shadow: var(--shadow);
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+/* Fila de 6 botones de redes sociales pequeños sin texto */
+.social-buttons-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+  margin: 7px 0;
+}
+
+.social-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--ink);
+  height: 32px;
+  border-radius: 9px;
+  border: 2px solid #ad9bb5;
+  background: linear-gradient(#f1ebf4,#d0bfd8);
+  box-shadow: var(--shadow);
+  font-size: 14px;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.social-icon-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(#fff, #dfcce6);
 }
