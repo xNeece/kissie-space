@@ -440,45 +440,59 @@ audio.onended=()=>loadSong(idx+1,true);
 loadSong(0);
 
 /* ========================= LOGIN / ENTER ========================= */
-const loginScreen=document.getElementById("loginScreen");
-const loginForm=document.getElementById("loginForm");
-const loginRegister=document.getElementById("loginRegister");
-const loginPassword=document.getElementById("loginPassword");
-const loginStatus=document.getElementById("loginStatus");
-const xatWindow=document.getElementById("xatWindow");
+const loginScreen = document.getElementById("loginScreen");
+const loginForm = document.getElementById("loginForm");
+const loginRegister = document.getElementById("loginRegister");
+const loginPassword = document.getElementById("loginPassword");
+const loginStatus = document.getElementById("loginStatus");
+const xatWindow = document.getElementById("xatWindow");
 
 function enterProfile(){
-  if(!loginScreen || !xatWindow)return;
-  loginStatus.textContent="Loading profile... ♡";
-  /* La interacción del botón/formulario permite iniciar audio en navegadores con autoplay bloqueado. */
+  if(!loginScreen || !xatWindow) return;
+  loginStatus.textContent = "Loading profile... ♡";
   audio.play().catch(()=>{});
   xatWindow.classList.add("main-enter");
   loginScreen.classList.add("login-leave");
   document.body.classList.remove("login-lock");
   setTimeout(()=>{
-    loginScreen.style.display="none";
-    loginScreen.setAttribute("aria-hidden","true");
+    loginScreen.style.display = "none";
+    loginScreen.setAttribute("aria-hidden", "true");
     xatWindow.classList.remove("main-enter");
-  },700);
+  }, 700);
 }
 
-// CORRECCIÓN PARA XAT: Prevenimos el submit nativo para evitar el bloqueo del sandbox del iframe
-loginForm.addEventListener("submit", e => {
-  e.preventDefault();
-  e.stopPropagation();
+// Bloqueamos cualquier intento de envío por submit y anulamos el comportamiento
+if (loginForm) {
+  loginForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    return false;
+  }, true);
+}
+
+// Vinculamos la acción directamente al botón de enviar/entrar
+const submitBtn = loginForm ? loginForm.querySelector("button[type='submit'], input[type='submit'], .login-btn") : null;
+
+if (submitBtn) {
+  // Cambiamos el tipo para que nunca actúe como un submit nativo del navegador
+  submitBtn.setAttribute("type", "button");
   
-  const register = loginRegister.value.trim();
-  const password = loginPassword.value.trim();
-  
-  if(!register || !password){
-    loginStatus.textContent = "Please enter your register and password.";
-    if(!register) loginRegister.focus(); else loginPassword.focus();
-    return;
-  }
-  
-  enterProfile();
-  return false;
-});
+  submitBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const register = loginRegister.value.trim();
+    const password = loginPassword.value.trim();
+    
+    if(!register || !password){
+      loginStatus.textContent = "Please enter your register and password.";
+      if(!register) loginRegister.focus(); else loginPassword.focus();
+      return;
+    }
+    
+    enterProfile();
+  });
+}
 
 /* ========================= VIDEO ========================= */
 const videos=[1,2,3,4,5,6];
