@@ -168,16 +168,18 @@
       </section>
     </section>
 
-   <!-- ======================== MESSAGE ======================== -->
+<!-- ======================== MESSAGE ======================== -->
 <section class="view" id="chatView">
   <section class="full-panel chat-panel">
     <div class="panel-title">● message <span>online ♡</span></div>
     <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
 
-    <form class="chat-form" id="chatForm">
+    <!-- Usamos un div con id="chatForm" (o sin etiqueta form) y el botón con type="button" -->
+    <div class="chat-form" id="chatForm">
       <input id="chatInput" maxlength="180" autocomplete="off" placeholder="write a message...">
-      <button type="submit">send ♡</button>
-    </form>
+      <button type="button" id="chatSendBtn">send ♡</button>
+    </div>
+    
     <div class="chat-hint">you can write anything — the space will answer with a random reply ♡</div>
   </section>
 </section>

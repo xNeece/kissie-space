@@ -333,22 +333,40 @@ function randomReply(){
   return list[Math.floor(Math.random() * list.length)];
 }
 
-const chatForm = document.getElementById("chatForm");
-if(chatForm){
-  chatForm.onsubmit = e => {
-    e.preventDefault();
-    const input = document.getElementById("chatInput");
-    if(!input) return;
-    const value = input.value.trim();
-    if(!value) return;
-    
-    addMessage("Me", value, true);
-    input.value = "";
-    input.focus();
+function handleSendMessage(e) {
+  if (e) e.preventDefault();
+  
+  const input = document.getElementById("chatInput");
+  if(!input) return;
+  const value = input.value.trim();
+  if(!value) return;
+  
+  addMessage("Me", value, true);
+  input.value = "";
+  input.focus();
 
-    const delay = random(CONFIG.chat.replyDelayMin, CONFIG.chat.replyDelayMax);
-    setTimeout(()=>addMessage("Kissie", randomReply(), false), delay);
-  };
+  const delay = random(CONFIG.chat.replyDelayMin, CONFIG.chat.replyDelayMax);
+  setTimeout(()=>addMessage("Kissie", randomReply(), false), delay);
+}
+
+// Vincular el botón de enviar de forma segura
+const chatSendBtn = document.getElementById("chatSendBtn");
+if(chatSendBtn){
+  chatSendBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    handleSendMessage(e);
+  });
+}
+
+// Permitir enviar presionando "Enter" dentro del input sin recargar
+const chatInput = document.getElementById("chatInput");
+if(chatInput){
+  chatInput.addEventListener("keydown", (e) => {
+    if(e.key === "Enter"){
+      e.stopPropagation();
+      handleSendMessage(e);
+    }
+  });
 }
 
 /* ========================= MUSIC ========================= */
