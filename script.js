@@ -720,7 +720,7 @@ const heartMessages=document.getElementById("heartMessages");
 const HEART_PHRASES=[
   ["El principito.","Jamás encontrarás dos veces a la misma persona, ni siquiera en la misma persona. ♡"],
   ["Isabel Allende.","Ella era una criatura romántica y sentimental, con tendencia a la soledad, de pocas amigas, capaz de emocionarse hasta las lágrimas cuando florecían las rosas en el jardín ✿"],
-  ["Valentina Romanetti.","Siempre ha sido de las que tienen p{ajaros en la cabeza y solo yo sé lo bonito que es verlos volar. ♡"],
+  ["Valentina Romanetti.","Siempre he sido de las que tienen pájaros en la cabeza y solo yo sé lo bonito que es verlos volar. ♡"],
   ["Fragmentos.","La mitad de tu belleza proviene de tu forma de hablar y tratar a las personas. ❁"],
   ["Fragmentos.","Tengo la mala costumbre de dar un océano cada vez que alguien pide una gota de agua. ♡"],
   ["Anónimo","Hay eternidades tan fugaces que duran solo un instante. ✧"]
