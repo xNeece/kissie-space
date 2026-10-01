@@ -104,11 +104,11 @@ const galleryData = {
     icon: "📷",
     items: [
       { file: "photo-01.png", name: "Relax" },
-      { file: "photo-02.png", name: "Cool" },
+      { file: "photo-02.png", name: "Journey ᯓ ✈︎" },
       { file: "photo-03.png", name: "Flowers" },
-      { file: "photo-04.png", name: "Tired" },
-      { file: "photo-05.png", name: "More Flowers" },
-      { file: "photo-06.png", name: "Angry" }
+      { file: "photo-04.png", name: "Coffe ⋆☕︎˖" },
+      { file: "photo-05.png", name: "Cute Place ❤︎" },
+      { file: "photo-06.png", name: "Dance 𓁇𓁋" }
     ]
   },
 
