@@ -303,42 +303,53 @@ function showView(v){
 document.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>showView(b.dataset.view));
 
 /* ========================= MESSAGE ========================= */
-let chatStarted=false;
+let chatStarted = false;
 
 function esc(s){
   return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
 }
-function addMessage(n,t,me=false){
-  const row=document.createElement("div");
-  row.className="chat-message"+(me?" me":"");
-  row.innerHTML=`<div class="bubble"><b>${esc(n)}:</b> ${esc(t)}</div>`;
-  const box=document.getElementById("chatMessages");
-  box.appendChild(row);
-  box.scrollTop=box.scrollHeight;
+
+function addMessage(n, t, me = false){
+  const row = document.createElement("div");
+  row.className = "chat-message" + (me ? " me" : "");
+  row.innerHTML = `<div class="bubble"><b>${esc(n)}:</b> ${esc(t)}</div>`;
+  const box = document.getElementById("chatMessages");
+  if(box){
+    box.appendChild(row);
+    box.scrollTop = box.scrollHeight;
+  }
 }
+
 function startChat(){
-  if(chatStarted)return;
-  chatStarted=true;
-  CONFIG.chat.opening.forEach((m,i)=>{
-    setTimeout(()=>addMessage(m[0], m[1], m[0] === "Me"), i*750);
+  if(chatStarted) return;
+  chatStarted = true;
+  CONFIG.chat.opening.forEach((m, i)=>{
+    setTimeout(()=>addMessage(m[0], m[1], m[0] === "Me"), i * 750);
   });
 }
-function randomReply(){
-  const list=CONFIG.chat.replies;
-  return list[Math.floor(Math.random()*list.length)];
-}
-document.getElementById("chatForm").onsubmit=e=>{
-  e.preventDefault();
-  const input=document.getElementById("chatInput");
-  const value=input.value.trim();
-  if(!value)return;
-  addMessage("Me",value,true);
-  input.value="";
-  input.focus();
 
-  const delay=random(CONFIG.chat.replyDelayMin,CONFIG.chat.replyDelayMax);
-  setTimeout(()=>addMessage("Kissie",randomReply(),false),delay);
-};
+function randomReply(){
+  const list = CONFIG.chat.replies;
+  return list[Math.floor(Math.random() * list.length)];
+}
+
+const chatForm = document.getElementById("chatForm");
+if(chatForm){
+  chatForm.onsubmit = e => {
+    e.preventDefault();
+    const input = document.getElementById("chatInput");
+    if(!input) return;
+    const value = input.value.trim();
+    if(!value) return;
+    
+    addMessage("Me", value, true);
+    input.value = "";
+    input.focus();
+
+    const delay = random(CONFIG.chat.replyDelayMin, CONFIG.chat.replyDelayMax);
+    setTimeout(()=>addMessage("Kissie", randomReply(), false), delay);
+  };
+}
 
 /* ========================= MUSIC ========================= */
 const songs=[
