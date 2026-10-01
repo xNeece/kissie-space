@@ -692,3 +692,312 @@ box-shadow:
   transform: translateY(-2px);
   background: linear-gradient(#fff, #dfcce6);
 }
+
+
+/* =========================================================
+   MOBILE STABILITY PATCH — no altera el zoom de escritorio
+   ========================================================= */
+@media screen and (max-width:760px){
+
+  /* El zoom .85 original se conserva en PC.
+     En teléfonos se desactiva porque zoom sobre body rompe
+     position:fixed, vh y las capas del login. */
+  html,
+  body{
+    width:100%;
+    min-width:0;
+    max-width:100%;
+    overflow-x:hidden;
+    -webkit-text-size-adjust:100%;
+  }
+
+  body{
+    zoom:1;
+    display:block;
+    min-height:100svh;
+    min-height:100dvh;
+    padding:85px 7px 7px;
+  }
+
+  /* Mientras está el login, la ventana principal NO existe
+     visualmente detrás de él. Evita el bug login + perfil. */
+  body.login-lock #xatWindow{
+    visibility:hidden !important;
+    opacity:0 !important;
+    pointer-events:none !important;
+  }
+
+  /* Viewport móvil moderno: evita saltos cuando aparece/desaparece
+     la barra del navegador. */
+  #loginScreen{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100svh;
+    min-height:100svh;
+    height:100dvh;
+    min-height:100dvh;
+    max-width:none;
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding:78px 7px max(7px, env(safe-area-inset-bottom));
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;
+  }
+
+  .login-window{
+    width:100%;
+    max-width:760px;
+    height:calc(100svh - 85px);
+    height:calc(100dvh - 85px);
+    min-height:0;
+    max-height:none;
+    margin:0 auto;
+  }
+
+  .xat-window{
+    width:100%;
+    max-width:none;
+    min-width:0;
+    height:calc(100svh - 92px);
+    height:calc(100dvh - 92px);
+    min-height:0;
+    max-height:none;
+    margin:0 auto;
+  }
+
+  /* La barra superior deja de tener un ancho fijo de 500px. */
+  .browser-bar{
+    min-width:0;
+    overflow:hidden;
+  }
+
+  .browser-nav-center{
+    left:50%;
+    width:calc(100% - 72px);
+    max-width:none;
+    min-width:0;
+    overflow:hidden;
+  }
+
+  .nav-history-group{
+    display:flex;
+    flex:0 0 auto;
+    gap:2px;
+  }
+
+  .browser-nav-btn,
+  .browser-home-btn{
+    width:27px;
+    min-width:27px;
+    height:29px;
+    padding:0;
+    border-radius:8px;
+    font-size:11px;
+  }
+
+  .address-pill,
+  .login-address{
+    width:auto;
+    min-width:0;
+    max-width:none;
+    flex:1 1 auto;
+    height:31px;
+    padding:0 8px;
+    gap:5px;
+    font-size:9px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .address-pill .globe,
+  .login-address .globe{
+    flex:0 0 auto;
+    font-size:13px;
+  }
+
+  .window-controls{
+    flex:0 0 auto;
+    gap:5px;
+  }
+
+  /* Nunca permitimos que un hijo con contenido largo
+     fuerce una segunda anchura del layout. */
+  .screen,
+  .view,
+  .view.active,
+  .full-panel,
+  .music-panel,
+  .video-panel,
+  .chat-panel,
+  .content-side,
+  .profile-side,
+  .music-main,
+  .music-info,
+  .playlist,
+  .video-grid{
+    min-width:0;
+    max-width:100%;
+    box-sizing:border-box;
+  }
+
+  .screen{
+    min-height:0;
+    overflow:hidden;
+  }
+
+  .view{
+    min-height:0;
+    overflow:auto;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .full-panel{
+    width:100%;
+    min-height:0;
+    overflow:auto;
+  }
+
+  /* La waveform gana un poco de ancho sin provocar
+     scroll horizontal. */
+  .music-info .waveform{
+    width:calc(100% + 12px);
+    max-width:none;
+    margin-left:-6px;
+    margin-right:-6px;
+    box-sizing:border-box;
+  }
+
+  /* Evita que los elementos de Music creen una columna
+     invisible más ancha que el teléfono. */
+  .music-main{
+    width:100%;
+    grid-template-columns:minmax(0,1fr);
+    overflow:hidden;
+  }
+
+  .album-art{
+    max-width:100%;
+  }
+
+  .playlist{
+    width:100%;
+    overflow:hidden;
+  }
+
+  .playlist-row{
+    min-width:0;
+  }
+
+  .playlist-row span{
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  /* Evita que los créditos inferiores produzcan
+     overflow horizontal en teléfonos estrechos. */
+  .bottom-bar{
+    min-width:0;
+    padding-left:max(7px, env(safe-area-inset-left));
+    padding-right:max(7px, env(safe-area-inset-right));
+    padding-bottom:max(5px, env(safe-area-inset-bottom));
+  }
+
+  .credits{
+    min-width:0;
+    max-width:100%;
+    overflow:hidden;
+  }
+
+  .credits span{
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  /* Modales: ocupan el viewport real del teléfono. */
+  .media-modal{
+    inset:0;
+    width:100vw;
+    height:100svh;
+    height:100dvh;
+    min-height:0;
+    padding:max(10px, env(safe-area-inset-top))
+            max(8px, env(safe-area-inset-right))
+            max(10px, env(safe-area-inset-bottom))
+            max(8px, env(safe-area-inset-left));
+  }
+
+  .media-modal-card{
+    max-width:100%;
+    max-height:100%;
+    min-width:0;
+  }
+
+  /* Paneles flotantes: nunca salen del viewport. */
+  .calendar-panel,
+  .heart-panel{
+    max-width:calc(100vw - 16px);
+    box-sizing:border-box;
+  }
+}
+
+/* En dispositivos táctiles no dejamos estados :hover
+   pegados después de tocar un elemento. */
+@media (hover:none) and (pointer:coarse){
+  .avatar-frame:hover,
+  .gallery-card:hover,
+  .video-card:hover,
+  .video-thumb:hover,
+  .album-art:hover,
+  .login-avatar:hover{
+    transform:none;
+    filter:none;
+  }
+
+  .top-tab:hover{
+    transform:none;
+  }
+
+  #heartButton:hover,
+  #calendarButton:hover{
+    transform:none;
+  }
+}
+
+/* Fallback para navegadores que no conocen 100dvh. */
+@supports not (height:100dvh){
+  @media screen and (max-width:760px){
+    #loginScreen{
+      height:100vh;
+      min-height:100vh;
+    }
+    .login-window{
+      height:calc(100vh - 85px);
+    }
+    .xat-window{
+      height:calc(100vh - 92px);
+    }
+    .media-modal{
+      height:100vh;
+    }
+  }
+}
+
+@media screen and (max-width:760px) and (min-height:1px){
+  #loginScreen{
+    height:var(--app-vh,100dvh);
+    min-height:var(--app-vh,100dvh);
+  }
+  .login-window{
+    height:calc(var(--app-vh,100dvh) - 85px);
+  }
+  .xat-window{
+    height:calc(var(--app-vh,100dvh) - 92px);
+  }
+  .media-modal{
+    height:var(--app-vh,100dvh);
+  }
+}

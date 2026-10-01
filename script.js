@@ -388,6 +388,17 @@ const miniPlay=document.getElementById("miniPlayBtn");
 const miniPrev=document.getElementById("miniPrevBtn");
 const miniNext=document.getElementById("miniNextBtn");
 
+/* ========================= MUSIC WAVEFORM =========================
+   The visual wave uses the existing CSS animation so the original
+   pastel/lilac style is preserved. The bars animate only while the
+   audio element is playing and stop immediately on pause.
+   ================================================================ */
+const waveform=document.getElementById("waveform");
+if(waveform){
+  const waveHeights=[8,14,21,11,17,25,13,29,18,10,23,15,27,12,20,30,16,24,9,19,26,13,22,17,28,11,18,25,14,21,10,27,16,23,12,29,19,15,26,9,20,24,13,18,28,11,22,16,25,14,20,9,27,17,23,12,19,29,15,21,10,26,18,24,13,20];
+  waveform.innerHTML=waveHeights.map((height,i)=>`<i style="--wave-height:${height}px;--wave-delay:${(i*42)%900}ms"></i>`).join("");
+}
+
 function syncMusicUI(){
   const s=songs[idx];
   document.getElementById("songTitle").textContent=s[0];
@@ -467,6 +478,30 @@ seek.oninput=()=>seekAudio(seek.value);
 miniSeek.oninput=()=>seekAudio(miniSeek.value);
 audio.onended=()=>loadSong(idx+1,true);
 loadSong(0);
+
+/* ========================= MOBILE VIEWPORT STABILITY =========================
+   Fallback dinámico para navegadores que cambian la altura visible al
+   mostrar/ocultar la barra de direcciones. No altera el diseño.
+   ================================================================ */
+(function(){
+  const root=document.documentElement;
+  let raf=0;
+
+  function syncViewport(){
+    if(raf) cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(()=>{
+      const h=(window.visualViewport ? window.visualViewport.height : window.innerHeight);
+      root.style.setProperty("--app-vh", `${h}px`);
+    });
+  }
+
+  syncViewport();
+  window.addEventListener("resize",syncViewport,{passive:true});
+  window.addEventListener("orientationchange",()=>setTimeout(syncViewport,120),{passive:true});
+  if(window.visualViewport){
+    window.visualViewport.addEventListener("resize",syncViewport,{passive:true});
+  }
+})();
 
 /* ========================= LOGIN / ENTER ========================= */
 const loginScreen = document.getElementById("loginScreen");
