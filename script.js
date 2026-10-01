@@ -132,9 +132,9 @@ const galleryData = {
       { file: "movie-01.png", name: "Mulán" },
       { file: "movie-02.png", name: "Spirited Away" },
       { file: "movie-03.png", name: "Howl's Moving Castle" },
-      { file: "movie-04.png", name: "Howl's Moving Castle" },
-      { file: "movie-05.png", name: "Mulán" },
-      { file: "movie-06.png", name: " Suzume no Tojimari" }
+      { file: "movie-04.png", name: "Brave" },
+      { file: "movie-05.png", name: "Wreck-It Ralph" },
+      { file: "movie-06.png", name: "Coraline" }
     ]
   },
 
@@ -142,12 +142,12 @@ const galleryData = {
     label: "Series",
     icon: "📺",
     items: [
-      { file: "series-01.png", name: "Stranger Things" },
-      { file: "series-02.png", name: "Euphoria" },
-      { file: "series-03.png", name: "Arcane" },
-      { file: "series-04.png", name: "Friends" },
-      { file: "series-05.png", name: "The Office" },
-      { file: "series-06.png", name: "Breaking Bad" }
+      { file: "series-01.png", name: "Bones" },
+      { file: "series-02.png", name: "Bride of the Water God" },
+      { file: "series-03.png", name: "Horimiya" },
+      { file: "series-04.png", name: "Naruto" },
+      { file: "series-05.png", name: "Pretty Little Liars" },
+      { file: "series-06.png", name: "Orphan Black" }
     ]
   }
 };
