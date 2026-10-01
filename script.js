@@ -462,27 +462,23 @@ function enterProfile(){
   },700);
 }
 
-loginForm.addEventListener("submit",e=>{
+// CORRECCIÓN PARA XAT: Prevenimos el submit nativo para evitar el bloqueo del sandbox del iframe
+loginForm.addEventListener("submit", e => {
   e.preventDefault();
-  const register=loginRegister.value.trim();
-  const password=loginPassword.value.trim();
+  e.stopPropagation();
+  
+  const register = loginRegister.value.trim();
+  const password = loginPassword.value.trim();
+  
   if(!register || !password){
-    loginStatus.textContent="Please enter your register and password.";
-    if(!register)loginRegister.focus(); else loginPassword.focus();
+    loginStatus.textContent = "Please enter your register and password.";
+    if(!register) loginRegister.focus(); else loginPassword.focus();
     return;
   }
+  
   enterProfile();
+  return false;
 });
-
-const wave=document.getElementById("waveform");
-for(let i=0;i<90;i++){
-  const b=document.createElement("i");
-  const h=7+Math.abs(Math.sin(i*.83))*25;
-  b.style.setProperty("--wave-height",h+"px");
-  b.style.setProperty("--wave-delay",((i%11)*70)+"ms");
-  wave.appendChild(b);
-}
-if(audio.paused) wave.classList.remove("playing");
 
 /* ========================= VIDEO ========================= */
 const videos=[1,2,3,4,5,6];
