@@ -557,7 +557,18 @@ if (submitBtn) {
     enterProfile();
   });
 }
+// Permitir iniciar sesión presionando Enter
+if (loginForm) {
+  loginForm.addEventListener("keydown", function(e) {
+    if (e.key !== "Enter") return;
 
+    e.preventDefault();
+
+    if (submitBtn) {
+      submitBtn.click();
+    }
+  });
+}
 /* ========================= VIDEO ========================= */
 const videos=[1,2,3,4,5,6];
 document.getElementById("videoGrid").innerHTML=videos.map(i=>`
