@@ -15,7 +15,7 @@ const CONFIG = {
       "hehe ♡ I like that!",
       "aww, that's cute ✿",
       "tell me moree~",
-      "I was thinking the same thing ♡",
+      "i was thinking the same thing ♡",
       "hehe, welcome here!",
       "that made me smile :3",
       "wait, really? ♡",
@@ -24,7 +24,10 @@ const CONFIG = {
       "come back soon, okay? ♡",
       "i'm so fine, and you? ♡",
       "i like the flowers! ♡",
+      "i'll see you again later.",
+      "i will be there whenever you need me."
       "Are you okay? ♡"
+      "hope to see you again :3"
     ],
     replyDelayMin: 650,
     replyDelayMax: 1450
