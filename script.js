@@ -25,8 +25,8 @@ const CONFIG = {
       "i'm so fine, and you? ♡",
       "i like the flowers! ♡",
       "i'll see you again later.",
-      "i will be there whenever you need me."
-      "Are you okay? ♡"
+      "i will be there whenever you need me.",
+      "Are you okay? ♡",
       "hope to see you again :3"
     ],
     replyDelayMin: 650,
