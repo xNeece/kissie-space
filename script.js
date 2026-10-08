@@ -121,7 +121,7 @@ const galleryData = {
       { file: "friend-03.png", name: "A ⸜(｡˃ᵕ˂)⸝♡" },
       { file: "friend-04.png", name: "K （＾ω＾）" },
       { file: "friend-05.png", name: "N (˶ᵔᵕᵔ˶)" },
-      { file: "friend-06.png", name: "D ૮꒰˶•༝•˶꒱ა ♡" }
+      { file: "friend-06.png", name: "N ૮꒰˶•༝•˶꒱ა ♡" }
     ]
   },
 
